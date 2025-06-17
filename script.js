@@ -1,15 +1,61 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Clock
+  const openTimestamp = new Date();
+
   const clock = document.getElementById("clock");
   if (clock) {
     function updateClock() {
       const now = new Date();
-      clock.textContent = now.toLocaleString();
+
+      const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        hour12: true
+      };
+
+      clock.textContent = now.toLocaleString('en-US', options);
     }
+
     setInterval(updateClock, 1000);
     updateClock();
   }
-}); 
+
+  // SHOW PAGE OPENED TIME
+  const openTimeElement = document.getElementById("openTime");
+  if (openTimeElement) {
+    const options = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      hour12: true
+    };
+    openTimeElement.textContent = `Page opened at: ${openTimestamp.toLocaleString('en-US', options)}`;
+  }
+
+  // LIVE ACTIVE TIME COUNTER
+  const activeTimeElement = document.getElementById("activeTime");
+  function updateActiveTime() {
+    const now = new Date();
+    const diffInSeconds = Math.floor((now - openTimestamp) / 1000);
+
+    const hrs = Math.floor(diffInSeconds / 3600);
+    const mins = Math.floor((diffInSeconds % 3600) / 60);
+    const secs = diffInSeconds % 60;
+
+    activeTimeElement.textContent = `You've been here for: ${hrs}h ${mins}m ${secs}s`;
+  }
+
+  setInterval(updateActiveTime, 1000);
+  updateActiveTime();
+});
 
   // Accordion Nav Toggle
   const accBtn = document.querySelector(".accordion-btn");
@@ -32,9 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Your existing JS here...
 
-  // Custom messages for each letter
   const customMessages = {
     a: "i hope you die",
     b: "leBRON James",
@@ -64,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
     z: "zoon like goon with a z"
   };
 
-  // Keyboard event listener
   document.addEventListener('keydown', (event) => {
     const key = event.key.toLowerCase();
     const keyDisplay = document.getElementById('keyDisplay');
@@ -75,4 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
       keyDisplay.textContent = `You pressed: ${event.key}`;
     }
   });
+});
+
+accBtn.addEventListener("click", () => {
+  accContent.classList.toggle("open");
+  accBtn.classList.toggle("open");
 });
