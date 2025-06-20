@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const openTimestamp = new Date();
+  let startTime = new Date();
 
-  const clock = document.getElementById("clock");
-  if (clock) {
+  const clockEl = document.getElementById("clock");
+  if (clockEl) {
     function updateClock() {
       const now = new Date();
 
@@ -17,17 +17,16 @@ document.addEventListener('DOMContentLoaded', () => {
         hour12: true
       };
 
-      clock.textContent = now.toLocaleString('en-US', options);
+      clockEl.textContent = now.toLocaleString('en-US', options);
     }
 
-    setInterval(updateClock, 1000);
     updateClock();
+    setInterval(updateClock, 1000);
   }
 
-  // SHOW PAGE OPENED TIME
-  const openTimeElement = document.getElementById("openTime");
-  if (openTimeElement) {
-    const options = {
+  const openedAt = document.getElementById("openTime");
+  if (openedAt) {
+    openedAt.textContent = "Page opened at: " + startTime.toLocaleString('en-US', {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
@@ -36,70 +35,47 @@ document.addEventListener('DOMContentLoaded', () => {
       minute: 'numeric',
       second: 'numeric',
       hour12: true
-    };
-    openTimeElement.textContent = `Page opened at: ${openTimestamp.toLocaleString('en-US', options)}`;
+    });
   }
 
-  // LIVE ACTIVE TIME COUNTER
-  const activeTimeElement = document.getElementById("activeTime");
+  const activeEl = document.getElementById("activeTime");
+
   function updateActiveTime() {
-    const now = new Date();
-    const diffInSeconds = Math.floor((now - openTimestamp) / 1000);
+    let now = new Date();
+    let secs = Math.floor((now - startTime) / 1000);
+    let hrs = Math.floor(secs / 3600);
+    let mins = Math.floor((secs % 3600) / 60);
+    secs = secs % 60;
 
-    const hrs = Math.floor(diffInSeconds / 3600);
-    const mins = Math.floor((diffInSeconds % 3600) / 60);
-    const secs = diffInSeconds % 60;
-
-    activeTimeElement.textContent = `You've been here for: ${hrs}h ${mins}m ${secs}s`;
+    if (activeEl) {
+      activeEl.textContent = `You've been here for: ${hrs}h ${mins}m ${secs}s`;
+    }
   }
 
-  setInterval(updateActiveTime, 1000);
   updateActiveTime();
-});
-
-  // Accordion Nav Toggle
-  const accBtn = document.querySelector(".accordion-btn");
-  const accContent = document.querySelector(".accordion-content");
-  if (accBtn && accContent) {
-    accBtn.addEventListener("click", () => {
-      accContent.style.display = accContent.style.display === "block" ? "none" : "block";
-    });
-  }
-
-  // Click Counter
-  const clickBtn = document.getElementById("clickMe");
-  const countDisplay = document.getElementById("clickCount");
-  if (clickBtn && countDisplay) {
-    let count = 0;
-    clickBtn.addEventListener("click", () => {
-      count++;
-      countDisplay.textContent = count;
-    });
-  }
-
-document.addEventListener('DOMContentLoaded', () => {
+  setInterval(updateActiveTime, 1000);
 
   const customMessages = {
-    a: "i hope you die",
+    a: "apple",
     b: "leBRON James",
     c: "pretend like theres something interesting here please dont fail me cooper",
     d: "DIDDY BLUD😂😂😂😂😂😂😂😂😂😂😂😂",
     e: "there is nothing interesting that starts with e",
     f: "f like the failing grade im going to get for this final🥹",
     g: "goon",
-    h: "h like how im going to hang myself after i get my final grade for this class",
+    h: "hahahahahahahahahahahahahaha",
     i: "iiiiiiiiiiiiiiiii dont know what to put here dont take points off for this.",
     j: "TRIGGER WARNING: JOB",
     k: "kill me",
     l: "lebron james^2",
     m: "MUSTARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRD",
-    n: "genuinely what do i put for this?",
+    n: "geNuiNely what do i put for this?",
     o: "o like the letter o",
     p: "p like piss like the color yellow i hate that color",
     q: "this might be the most unusable letter in the entire alphabet",
     r: "i REALLY forgot how to code",
     s: "TRIGGER WARNING: SHOWER",
-    t: "t like trump like our morally corrupt president?",
+    t: "ts",
     u: "uglyyyyyy...",
     v: "volleyball like the sport that i am SO amazing at",
     w: "WHAT do i put for this letter AMIRIGHT😂😂😂😂😂😂😂😂",
@@ -108,19 +84,35 @@ document.addEventListener('DOMContentLoaded', () => {
     z: "zoon like goon with a z"
   };
 
-  document.addEventListener('keydown', (event) => {
-    const key = event.key.toLowerCase();
+  document.addEventListener('keydown', (e) => {
+    const key = e.key.toLowerCase();
     const keyDisplay = document.getElementById('keyDisplay');
 
     if (customMessages[key]) {
       keyDisplay.textContent = customMessages[key];
     } else {
-      keyDisplay.textContent = `You pressed: ${event.key}`;
+      keyDisplay.textContent = `press one of the letters PLEASE...`;
     }
   });
-});
 
-accBtn.addEventListener("click", () => {
-  accContent.classList.toggle("open");
-  accBtn.classList.toggle("open");
+  const clickBtn = document.getElementById("click-me");
+  const countEl = document.getElementById("click-count");
+  let clicks = 0;
+
+  if (clickBtn && countEl) {
+    clickBtn.addEventListener("click", () => {
+      clicks++;
+      countEl.textContent = clicks;
+    });
+  }
+
+  const accordionBtn = document.querySelector(".accordion-button");
+  const accordionBox = document.querySelector(".accordion-content");
+
+  if (accordionBtn && accordionBox) {
+    accordionBtn.addEventListener("click", () => {
+      accordionBox.classList.toggle("open");
+      accordionBtn.classList.toggle("open");
+    });
+  }
 });

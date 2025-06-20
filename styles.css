@@ -6,7 +6,7 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #121212;
-  color: #f1f1f1;
+  color: #e6f1ff;
   margin: 0;
   padding: 0;
   display: flex;
@@ -15,21 +15,19 @@ body {
   min-height: 100vh;
 }
 
-/* === Headings === */
 h1, h2 {
-  color: #ffffff;
+  color: #00ffe7;
   text-align: center;
   margin: 40px 0 20px;
   font-size: 2.4em;
 }
 
-/* === Buttons === */
 button {
   padding: 15px 30px;
   margin: 20px;
-  background-color: #1f1f1f;
-  color: #ffffff;
-  border: 2px solid #2e2e2e;
+  background-color: #1e1e1e;
+  color: #e6f1ff;
+  border: 2px solid #3b3b3b;
   border-radius: 10px;
   font-size: 1.1em;
   cursor: pointer;
@@ -37,10 +35,10 @@ button {
 }
 
 button:hover {
-  background-color: #2a2a2a;
-  border-color: #4d4d4d;
+  background-color: #2f2f2f;
+  border-color: #5e5e5e;
   transform: scale(1.05);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 12px rgba(0, 255, 247, 0.15);
 }
 
 button:active {
@@ -48,8 +46,8 @@ button:active {
 }
 
 .card {
-  background-color: #1e1e1e;
-  border: 2px solid #333;
+  background-color: #1a1a1a;
+  border: 2px solid #2f2f2f;
   border-radius: 12px;
   padding: 20px;
   font-size: 1.6em;
@@ -57,14 +55,14 @@ button:active {
   text-align: center;
   width: 80%;
   max-width: 600px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 255, 195, 0.1);
 }
 
 #hoverBox {
   width: 250px;
   height: 150px;
-  background-color: #2a2a2a;
-  color: #ccc;
+  background-color: #262626;
+  color: #d6faff;
   margin: 40px auto;
   display: flex;
   align-items: center;
@@ -73,12 +71,12 @@ button:active {
   font-size: 1.3em;
   text-align: center;
   transition: all 0.6s ease;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(0, 255, 195, 0.08);
   cursor: pointer;
 }
 
 #hoverBox:hover {
-  background-color: #00ffc3;
+  background-color: #00ffe7;
   color: #121212;
   width: 300px;
   height: 300px;
@@ -88,48 +86,47 @@ button:active {
   transform: rotate(360deg);
 }
 
-/* === Accordion Section === */
 .accordion {
   width: 90%;
   max-width: 600px;
   margin: 30px auto;
 }
 
-.accordion-btn {
+.accordion-button {
   width: 100%;
   text-align: left;
   font-weight: bold;
-  background-color: #202020;
+  background-color: #1f1f1f;
   border: 2px solid #444;
-  color: #eee;
+  color: #aadfff;
   border-radius: 10px;
   padding: 15px;
   position: relative;
   cursor: pointer;
 }
 
-.accordion-btn::after {
+.accordion-button::after {
   content: '▼';
   position: absolute;
   right: 20px;
   transition: transform 0.3s ease;
 }
 
-.accordion-btn.open::after {
+.accordion-button.open::after {
   transform: rotate(180deg);
 }
 
 .accordion-content {
   max-height: 0;
   overflow: hidden;
-  background-color: #2a2a2a;
+  background-color: #232323;
   padding: 0 20px;
   border-radius: 0 0 10px 10px;
   transition: max-height 0.5s ease, padding 0.3s ease;
 }
 
 .accordion-content.open {
-  max-height: 200px;
+  max-height: 250px;
   padding: 20px;
 }
 
@@ -145,7 +142,7 @@ button:active {
 
 .accordion-content a {
   text-decoration: none;
-  color: #aadfff;
+  color: #6bcfff;
   font-size: 1.1em;
 }
 
@@ -154,18 +151,17 @@ button:active {
   color: #ffffff;
 }
 
-/* === Key Display === */
 #keyDisplay {
   font-size: 1.6em;
-  color: #7dd3fc;
+  color: #b3b3ff;
   margin-top: 20px;
   text-align: center;
 }
 
-#clickCount {
+#click-count {
   font-weight: bold;
   font-size: 1.4em;
-  color: #ffffff;
+  color: #00ffe7;
 }
 
 @media (max-width: 600px) {
