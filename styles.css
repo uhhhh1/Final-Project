@@ -58,7 +58,7 @@ button:active {
   box-shadow: 0 4px 15px rgba(0, 255, 195, 0.1);
 }
 
-#hoverBox {
+#hover-box {
   width: 250px;
   height: 150px;
   background-color: #262626;
@@ -75,7 +75,7 @@ button:active {
   cursor: pointer;
 }
 
-#hoverBox:hover {
+#hover-box:hover {
   background-color: #00ffe7;
   color: #121212;
   width: 300px;
@@ -169,7 +169,7 @@ button:active {
     font-size: 1.8em;
   }
 
-  #hoverBox {
+  #hover-box {
     width: 90%;
     font-size: 1em;
   }

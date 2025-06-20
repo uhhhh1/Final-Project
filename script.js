@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateClock, 1000);
   }
 
-  const openedAt = document.getElementById("openTime");
+  const openedAt = document.getElementById("open-time");
   if (openedAt) {
     openedAt.textContent = "Page opened at: " + startTime.toLocaleString('en-US', {
       weekday: 'long',
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const activeEl = document.getElementById("activeTime");
+  const activeEl = document.getElementById("active-time");
 
   function updateActiveTime() {
     let now = new Date();
